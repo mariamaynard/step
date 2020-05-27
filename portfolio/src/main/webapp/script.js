@@ -11,13 +11,3 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-//used to open a new tab
-// function openTab(tabName) {
-//   var i;
-//   var x = document.getElementsByClassName("tab");
-//   for(i = 0; i < x.length; i++){
-//       x[i].style.display = "none";
-//   }
-//   document.getElementById(tabName).style.display = "block";
-// }
