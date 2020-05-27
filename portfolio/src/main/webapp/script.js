@@ -12,12 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//used to open a new tab
-function openTab(tabName) {
-  var i;
-  var x = document.getElementsByClassName("tab");
-  for(i = 0; i < x.length; i++){
-      x[i].style.display = "none";
-  }
-  document.getElementById(tabName).style.display = "block";
+/**
+ * Adds a random greeting to the page.
+ */
+function addRandomGreeting() {
+  const greetings =
+      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+
+  // Pick a random greeting.
+  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+  // Add it to the page.
+  const greetingContainer = document.getElementById('greeting-container');
+  greetingContainer.innerText = greeting;
 }
