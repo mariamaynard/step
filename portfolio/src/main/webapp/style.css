@@ -1,14 +1,14 @@
 body{
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    font-family: Verdana, Geneva, sans-serif;
-    background-image: url("images/back.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  font-family: Verdana, Geneva, sans-serif;
+  background-image: url("images/back.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
 }
 
 .header {
@@ -42,6 +42,10 @@ body{
 /* Right-aligned link */
 #right {
   float: right;
+}
+
+#left{
+    float: left;
 }
 
 /* Change color on hover/mouse-over */
@@ -83,6 +87,89 @@ body{
   color: #20404d;
 }
 
+.footer {
+  padding: 20px; 
+  /* text-align: center;  */
+  background: #e0dfed; 
+  color: #20404d;
+}
+
+img{
+  max-width: 100%;
+  max-height: 100%;
+  text-align: center;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  text-align: center;
+  margin: 5px 2px;
+  float: right;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.row_pic {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sit next to each other */
+.column_pic {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column_pic img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns for the gallery*/
+@media screen and (max-width: 800px) {
+  .column_pic {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other for the gallery */
+@media screen and (max-width: 600px) {
+  .column_pic {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
   .row {
@@ -96,16 +183,4 @@ body{
     float: none;
     width: 100%;
   }
-}
-
-.footer {
-  padding: 20px; 
-  text-align: center; 
-  background: #e0dfed; 
-  color: #20404d;
-}
-
-img{
-    max-width: 100%;
-    max-height: 100%;
 }
