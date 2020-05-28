@@ -48,6 +48,19 @@ body{
     float: left;
 }
 
+#mylink{
+    text-decoration: none;
+    color: #665154;
+}
+
+h2{
+    color: #1f1819;
+}
+
+h3{
+    color: #5c494d;
+}
+
 /* Change color on hover/mouse-over */
 .navbar a:hover {
   background-color: #e1a8bb; 
@@ -76,7 +89,7 @@ body{
   flex: 30%;
   background-color: #f0edfa; 
   padding: 20px; 
-  color: #20404d;
+  color: #295161;
 }
 
 /* Main column */
@@ -84,7 +97,16 @@ body{
   flex: 70%; 
   background-color: #f8f7ff; 
   padding: 20px; 
-  color: #20404d;
+  color: #295161;
+}
+
+.col {
+    flex: 50%;
+}
+
+.colright {
+    float: right;
+    width: 50%;
 }
 
 .footer {
@@ -100,6 +122,10 @@ img{
   text-align: center;
 }
 
+li{
+  margin: 5px 0;
+} 
+
 .fa {
   padding: 20px;
   font-size: 30px;
@@ -108,7 +134,6 @@ img{
   text-decoration: none;
   text-align: center;
   margin: 5px 2px;
-  float: right;
 }
 
 .fa:hover {
