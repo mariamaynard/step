@@ -1,3 +1,8 @@
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
 body{
   margin-left: auto;
   margin-right: auto;
@@ -8,7 +13,6 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 100%;
 }
 
 .header {
@@ -37,10 +41,15 @@ body{
   text-align: center; 
   padding: 14px 20px; 
   text-decoration: none; 
+  border: 1px solid #f2c2c9;
+}
+
+.navbar a.right {
+  float: right;
 }
 
 /* Right-aligned link */
-#right {
+.footer a.right {
   float: right;
 }
 
@@ -51,6 +60,7 @@ body{
 #mylink{
     text-decoration: none;
     color: #665154;
+    margin: 10px 0;
 }
 
 h2{
@@ -68,35 +78,43 @@ h3{
 }
 
 .navbar a.active{
-    background-color: #b1a8bd;
-    color: #2b3e47
-}
-
-/* Ensure proper sizing */
-* {
-  box-sizing: border-box;
+    background-color: #9991a3;
+    color: #2b3e47;
+    border: 1px solid #f2c2c9;
 }
 
 /* Column container */
 .row {
+  display: -ms-flexbox; /* IE10 */
   display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
+}
+
+.row-gallery {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
 }
 
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
 .side {
+  -ms-flex: 30%; /* IE10 */
   flex: 30%;
-  background-color: #f0edfa; 
-  padding: 20px; 
+  background-color: #f0edfa;
+  padding: 20px;
   color: #295161;
 }
 
 /* Main column */
 .main {
-  flex: 70%; 
-  background-color: #f8f7ff; 
-  padding: 20px; 
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: #f8f7ff;
+  padding: 20px;
   color: #295161;
 }
 
@@ -104,14 +122,8 @@ h3{
     flex: 50%;
 }
 
-.colright {
-    float: right;
-    width: 50%;
-}
-
 .footer {
   padding: 20px; 
-  /* text-align: center;  */
   background: #e0dfed; 
   color: #20404d;
 }
@@ -165,36 +177,30 @@ li{
   color: white;
 }
 
-.row_pic {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
 /* Create four equal columns that sit next to each other */
-.column_pic {
+.column {
   flex: 25%;
   max-width: 25%;
   padding: 0 4px;
 }
 
-.column_pic img {
+.column img {
   margin-top: 8px;
   vertical-align: middle;
   width: 100%;
 }
 
-/* Responsive layout - makes a two column-layout instead of four columns for the gallery*/
+/* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
-  .column_pic {
+  .column {
     flex: 50%;
     max-width: 50%;
   }
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other for the gallery */
-@media screen and (max-width: 600px) {
-  .column_pic {
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .column {
     flex: 100%;
     max-width: 100%;
   }
@@ -202,15 +208,30 @@ li{
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
-  .row {
+  .row {   
     flex-direction: column;
   }
 }
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
+/* Responsive layout - when the screen is less than 700px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
   .navbar a {
     float: none;
     width: 100%;
+  }
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the footer stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .footer a.right {
+    float: none;
+    text-align: center;
+  }
+}
+
+/* Responsize so the footer will center when the screen is less that 700px wide*/
+@media screen and (max-width: 700px) {
+  .footer {
+    text-align: center;
   }
 }
