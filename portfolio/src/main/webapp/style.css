@@ -160,6 +160,11 @@ li{
   color: white;
 }
 
+.fa-github {
+  background: black;
+  color: white;
+}
+
 .row_pic {
   display: flex;
   flex-wrap: wrap;
