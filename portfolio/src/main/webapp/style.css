@@ -235,3 +235,10 @@ li{
     text-align: center;
   }
 }
+
+/* Responsize so the heater will center when the screen is less that 700px wide*/
+@media screen and (max-width: 700px) {
+  .header {
+    text-align: center;
+  }
+}
