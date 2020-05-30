@@ -3,16 +3,72 @@
   box-sizing: border-box;
 }
 
-body{
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+body {
   font-family: Verdana, Geneva, sans-serif;
   background-image: url("images/back.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.hero-image {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  background-image: url(images/tree.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hero-text h1 {
+  font-size: 72px;
+  letter-spacing: 0.2em;
+}
+
+.hero-text h1 span {
+  border: 10px solid white;
+  padding: 6px 14px;
+  display: inline-block;
+}
+
+.words {
+  margin: 20px;
+  display: block;
+  font-size: 26px;
+  text-shadow: 0 0 10px black;
+}
+
+.hero-text a {
+  color: white;
+  padding: 10px 24px;
+  font-size: 20px;
+  background: #2b3e47;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.hero-text a:hover {
+  opacity: 0.8;
 }
 
 .header {
@@ -25,6 +81,10 @@ body{
 /* Increase the font size of the <h1> element */
 .header h1 {
   font-size: 30px;
+}
+.header a{
+  text-decoration: none;
+  color: #735c6c;
 }
 
 /* Style the top navigation bar */
@@ -148,6 +208,16 @@ li{
   margin: 5px 2px;
 }
 
+.navbar .fa {
+  padding: 5px;
+  font-size: auto;
+  width: auto;
+  height: auto;
+  text-decoration: none;
+  text-align: center;
+  margin: auto;
+}
+
 .fa:hover {
     opacity: 0.7;
 }
@@ -207,14 +277,14 @@ li{
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .row {   
     flex-direction: column;
   }
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .navbar a {
     float: none;
     width: 100%;
@@ -222,7 +292,7 @@ li{
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the footer stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .footer a.right {
     float: none;
     text-align: center;
@@ -230,14 +300,14 @@ li{
 }
 
 /* Responsize so the footer will center when the screen is less that 700px wide*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .footer {
     text-align: center;
   }
 }
 
 /* Responsize so the heater will center when the screen is less that 700px wide*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .header {
     text-align: center;
   }
