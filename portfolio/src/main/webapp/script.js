@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getRandomQuote() {
-  fetch('/data').then(response => response.json()).then((json) => {
-    console.log(json);
-  const commentList = document.getElementById('quote-container');
-  commentList.innerHTML = '';
-  for(var comment in json) {
-    commentList.appendChild(createListElement(json[comment]));
-  }
+function getComment() {
+  fetch('/get-comment').then(response => response.json()).then((comnts) => {
+    console.log(comnts);
+    const commentList = document.getElementById('comments');
+    commentList.innerHTML = '';
+    for(var comment in comnts) {
+      commentList.appendChild(createListElement(comnts[comment]));
+    }
   });
 }
 
