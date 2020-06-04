@@ -42,7 +42,7 @@ body {
 
 .hero-text h1 {
   font-size: 72px;
-  letter-spacing: 0.2em;
+  letter-spacing: 3.2px;
 }
 
 .hero-text h1 span {
@@ -284,7 +284,7 @@ li{
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .navbar a {
     float: none;
     width: 100%;
