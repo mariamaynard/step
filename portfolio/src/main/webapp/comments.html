@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload = "getComment()">
     <div class = "container">
       <div class="header">
           <h1><a href = "index.html">Maria Maynard</a></h1>
@@ -20,35 +20,25 @@
         <a href="projects.html"><i class="fa fa-laptop-code"></i>Projects</a>
         <a href="experience.html"><i class = "fa fa-book-open"></i>Experience</a>
         <a href="gallery.html"><i class="fa fa-th"></i>Gallery</a>
-        <a href="contact.html" class = "right active"><i class = "fa fa-envelope"></i>Contact</a>
-        <a href="comments.html"><i class = "fa fa-comments"></i>Comments</a>
+        <a href="contact.html" class = "right"><i class = "fa fa-envelope"></i>Contact</a>
+        <a href="comments.html" class = "active"><i class = "fa fa-comments"></i>Comments</a>
       </div>
 
-      <div class="row">
-          <div class="side">
-            <img src = "images/profile-edit.jpg" alt = "image of maria at space needle">
-          </div>
-          <div class="main">
-            <h2>Contact Information</h2>
-            <p>To get in touch email me at:</p>
-            <p><a id = "mylink" href="mailto:mariamaynard@google.com" target="_blank">mariamaynard@google.com</a></p>
-            <h2>Social Media</h2>
-            <a href="https://www.facebook.com/maria.maynard.750" class="fa fa-facebook" target="_blank"></a>
-            <a href="https://twitter.com/mkitty213" class="fa fa-twitter" target="_blank"></a>
-            <a href="https://www.linkedin.com/in/mariamaynard/" class="fa fa-linkedin" target="_blank"></a>
-            <a href="https://www.instagram.com/maria.m.maynard/" class="fa fa-instagram" target="_blank"></a> 
-            <a href="https://github.com/mariamaynard" class="fa fa-github" target="_blank"></a>
-            <p>Feel free to connect with me on social media too!</p>
-          </div>
-      </div>
-
+      <h2>Add your comments here!</h2>
+      <div id = "comments"></div>
+      <form action = "/get-comment" method= "POST">
+        <p>Comment</p>
+        <input type = "text" name = "comment">
+        <br/><br/>
+        <input type = "submit"/>
+      </form>
+  
       <div class="footer">
         <a href="https://www.facebook.com/maria.maynard.750" class="fa fa-facebook right" target="_blank"></a>
         <a href="https://twitter.com/mkitty213" class="fa fa-twitter right" target="_blank"></a>
         <a href="https://www.linkedin.com/in/mariamaynard/" class="fa fa-linkedin right" target="_blank"></a>
         <a href="https://www.instagram.com/maria.m.maynard/" class="fa fa-instagram right" target="_blank"></a>
         <a href="https://github.com/mariamaynard" class="fa fa-github right" target="_blank"></a>
-        <a href="comments.html"><i class = "fa fa-comments"></i>Comments</a>
         <p>Designed & Developed by</p>
         <p>Maria Maynard 2020</p>
       </div>

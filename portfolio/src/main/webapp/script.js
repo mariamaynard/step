@@ -12,9 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-async function getRandomQuote() {
-  const response = await fetch('/data');
-  const quote = await response.text();
-  document.getElementById('quote-container').innerText = quote;
+function getComment() {
+  fetch('/get-comment').then(response => response.json()).then((comnts) => {
+    console.log(comnts);
+    const commentList = document.getElementById('comments');
+    commentList.innerHTML = '';
+    for(var comment in comnts) {
+      commentList.appendChild(createListElement(comnts[comment]));
+    }
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
 
