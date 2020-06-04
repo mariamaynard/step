@@ -14,19 +14,17 @@
 
 function getComment() {
   fetch('/get-comment').then(response => response.json()).then((comnts) => {
-    console.log(comnts);
     const commentList = document.getElementById('comments');
-    commentList.innerHTML = '';
-    for(var comment in comnts) {
-      commentList.appendChild(createListElement(comnts[comment]));
-    }
+    comnts.forEach((comm) => {
+      commentList.appendChild(createCommentElement(comm));
+    })
   });
 }
 
 /** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createCommentElement(comm) {
+  const comElem = document.createElement('li');
+  comElem.innerText = comm;
+  return comElem;
 }
 
