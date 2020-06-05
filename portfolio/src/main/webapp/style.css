@@ -176,6 +176,7 @@ h3{
   background-color: #f8f7ff;
   padding: 20px;
   color: #295161;
+  max-width: 70%;
 }
 
 .col {
@@ -197,6 +198,14 @@ img{
 li{
   margin: 5px 0;
 } 
+
+label {
+   color: #295161;
+}
+
+textarea {
+  resize: none;
+}
 
 .fa {
   padding: 20px;
@@ -260,6 +269,50 @@ li{
   width: 100%;
 }
 
+#commNum {
+  width: 70px;
+}
+
+#comments {
+  word-wrap: break-word;
+}
+
+.comment {
+  /* border: 2px solid #1f1819; */
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  background-color: #ffcdd4;
+  color: #2b3e47;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 15px;
+  outline:none;
+}
+ 
+input[type="submit"]:hover {
+  background-color: #8ea7c2;
+}
+
+button {
+  background-color: #ffcdd4;
+  color: #2b3e47;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 15px;
+  outline:none;
+}
+
+button:hover {
+  background-color: #8ea7c2;
+}
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column {
@@ -276,10 +329,17 @@ li{
   }
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+/* Responsive layout - when the screen is less than 750px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 750px) {
   .row {   
     flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 750px wide, let the main col fill up the screen */
+@media screen and (max-width: 750px) {
+  .main {   
+    max-width: 100%;
   }
 }
 

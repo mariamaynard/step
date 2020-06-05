@@ -24,22 +24,49 @@
         <a href="contact.html" class = "right"><i class = "fa fa-envelope"></i>Contact</a>
       </div>
 
-      <h2>Add your comments here!</h2>
-      <form onsubmit="postComment(event)" id = "myForm">
-        <p>Comment</p>
-        <input type = "text" id = "comment">
-        <br/><br/>
-        <input type = "submit"/>
-      </form>
-      <form onsubmit="maxComment(event)">
-        <p>How many comments do you want to show?</p>
-        <input type = "number" id = "commNum" min = "1" value = "5">
-        <br/><br/>
-        <input type = "submit"/>
-      </form>
-      <div id = "comments"></div>
-        <p>Click here to delete all the comments</p>
-        <button onclick="deleteCom()">Delete</button>
+      <div class="row">
+        <div class="main">
+          <h2>Add your comments here!</h2>
+          <div class="row">
+            <div class = "col">
+              <form onsubmit="postComment(event)" id = "myForm">
+                <h3>Comment</h3>
+                <input type = "text" id = "name" placeholder = "Your Name"><br/><br/>
+                <textarea rows="10" cols="30" id = "comment" placeholder = "Comment"></textarea>
+                <br/><br/>
+                <input id = "submit" type = "submit"/>
+                <br/><br/>
+              </form>
+            </div>
+            <div class = "col">
+              <h3>Options</h3>
+              <form onsubmit="applyOptions(event)">
+                <h3></h3>
+                <label for="commNum">Number of comments to show:</label>
+                <input type = "number" id = "commNum" min = "1" value = "5">
+                <br/><br/>
+                <label for="sort">Sort comments by:</label>
+                <select id="sort" name="sort">
+                  <option value="Newest">Newest First</option>
+                  <option value="Oldest">Oldest First</option>
+                  <option value="A">Author (alphabetical a-z)</option>
+                  <option value="Z">Author (alphabetial z-a)</option>
+                </select>
+                <br/><br/>
+                <input id = "submit" type = "submit" value = "Apply"/>
+                <br/><br/>
+              </form>
+              <label>Click here to delete all the comments:</label><br/><br/>
+              <button id = "submit" onclick="deleteCom()">Delete</button>
+              <br/><br/>
+            </div>
+          </div>
+          <div id = "comments"></div>
+        </div>
+        <div class="side">
+          <img src = "images/flower.jpg" alt = "image of maria holding a flower">
+        </div>
+      </div>
   
       <div class="footer">
         <a href="https://www.facebook.com/maria.maynard.750" class="fa fa-facebook right" target="_blank"></a>
