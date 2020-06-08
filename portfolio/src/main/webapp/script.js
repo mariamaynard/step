@@ -66,11 +66,15 @@ function deleteCom() {
 }
 
 function createCommentElement(comment) {
-  const comElem = document.createElement('dt');
+  const comElem = document.createElement('div');
   comElem.className = 'comment';
-  comElem.innerText = comment.name;
-  const commTextElem = document.createElement('dd');
+// give the name a header format
+  const nameElem = document.createElement('h4');
+  nameElem.id = 'name';
+  nameElem.innerText = comment.name;
+  const commTextElem = document.createElement('p');
   commTextElem.innerText = comment.text;
+  comElem.appendChild(nameElem);
   comElem.appendChild(commTextElem);
   return comElem;
 }
