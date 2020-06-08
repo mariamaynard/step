@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
 
    @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    PrintWriter out = response.getWriter();
     UserService userService = UserServiceFactory.getUserService();
     String url;
     String loggedIn;

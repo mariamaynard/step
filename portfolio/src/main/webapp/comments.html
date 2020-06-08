@@ -22,6 +22,7 @@
         <a href="gallery.html"><i class="fa fa-th"></i>Gallery</a>
         <a href="comments.html" class = "active"><i class = "fa fa-comments"></i>Comments</a>
         <a href="contact.html" class = "right"><i class = "fa fa-envelope"></i>Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="responsive()"><i class="fa fa-bars"></i></a>
       </div>
 
       <div class="row">
@@ -47,7 +48,7 @@
             <div class = "col">
               <h3>Options</h3>
               <form onsubmit="applyOptions(event)">
-                <label for="commNum">Number of comments to show:</label>
+                <label for ="commNum">Number of comments to show:</label>
                 <input type = "number" id = "commNum" min = "1" value = "5">
                 <br/><br/>
                 <label for="sort">Sort comments by:</label>
@@ -55,14 +56,22 @@
                   <option value="Newest">Newest First</option>
                   <option value="Oldest">Oldest First</option>
                   <option value="A">Author (alphabetical a-z)</option>
-                  <option value="Z">Author (alphabetial z-a)</option>
+                  <option value="Z">Author (alphabetical z-a)</option>
+                </select>
+                <br/><br/>
+                <label for= "filter">Filter comments:</label>
+                <select id = "filter" name = "filter">
+                  <option value ="All">All Comments</option>
+                  <option value = "Own">Your Comments</option>
                 </select>
                 <br/><br/>
                 <input id = "submit" type = "submit" value = "Apply"/>
                 <br/><br/>
               </form>
-              <!-- <label>Click here to delete all the comments:</label><br/><br/>
-              <button id = "submit" onclick="deleteCom()">Delete</button> -->
+              <div id ='deleteSec'>
+                <label>Click here to delete all the comments:</label><br/><br/>
+                <button id = "submit" onclick="deleteCom()">Delete</button>
+              </div>
               <br/><br/>
             </div>
           </div>

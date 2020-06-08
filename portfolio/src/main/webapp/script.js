@@ -13,13 +13,15 @@
 // limitations under the License.
 var max;
 var sort;
+var filter;
 
 function getComment(fromApply) {
   if(fromApply === true || max == null) {
     max = document.getElementById('commNum').value;
     sort = document.getElementById('sort').value;
+    filter = document.getElementById('filter').value;
   }
-  fetch('/get-comment?commNum=' + max + '&sort=' + sort).then(response => response.json()).then((comnts) => {
+  fetch('/get-comment?commNum=' + max + '&sort=' + sort + '&filter=' + filter).then(response => response.json()).then((comnts) => {
     const commentList = document.getElementById('comments');
     commentList.innerHTML = '';
     // add all of the comments to the comment container
@@ -34,10 +36,10 @@ function postComment(e) {
   e.preventDefault();
   var comment = document.getElementById('comment').value;
   var name = document.getElementById("name").value;
-  document.getElementById('myForm').reset();
   // make the post request with the comment as a parameter
   const requestPost = new Request('/get-comment?comment=' + comment + '&name=' + name, {method: 'POST'});
   fetch(requestPost).then(response => response.text()).then(text => {
+    document.getElementById('myForm').reset();
     if(text != ""){
       getComment();
     }
@@ -71,6 +73,7 @@ function createCommentElement(comment) {
   const nameElem = document.createElement('h4');
   nameElem.id = 'name';
   nameElem.innerText = comment.name;
+  // add in their comment
   const commTextElem = document.createElement('p');
   commTextElem.innerText = comment.text;
   comElem.appendChild(nameElem);
@@ -85,25 +88,56 @@ function load(){
     if(loginInfo.loggedIn === '1'){
       document.getElementById('commSec').style.display = 'block';
       document.getElementById('loginSec').style.display = 'none';
-      const userInfo = document.getElementById('userInfo');
-      const userEmail = document.createElement('p');
-      userEmail.innerHTML = "Logged in as " + loginInfo.email;
-      const logout = document.createElement('a');
-      logout.innerHTML = 'Logout';
-      logout.className = 'loginButton';
-      logout.href = loginInfo.url;
-      userInfo.appendChild(userEmail);
-      userInfo.appendChild(logout);
+      getUserLoggedIn(loginInfo);
+      if(loginInfo.email == "mariamaynard@google.com") {
+        document.getElementById('deleteSec').style.display = "block";
+      }
     } else {
       document.getElementById('commSec').style.display = 'none';
       document.getElementById('loginSec').style.display = 'block';
-      const loginSection = document.getElementById('loginSec');
-      const login = document.createElement('a');
-      login.innerHTML = 'Login';
-      login.className = 'loginButton';
-      login.href = loginInfo.url;
-      loginSection.appendChild(login);
+      askLogIn(loginInfo);
     }
   });
+}
+
+// get and display the information when a user is logged in
+function getUserLoggedIn(loginInfo) {
+  const userInfo = document.getElementById('userInfo');
+  const userEmail = document.createElement('l');
+  userEmail.for = 'loginButton';
+  userEmail.innerHTML = "Logged in as " + loginInfo.email;
+  const logout = document.createElement('a');
+  logout.innerHTML = 'Logout';
+  logout.className = 'loginButton';
+  logout.id = 'logout';
+  logout.href = loginInfo.url;
+  userInfo.appendChild(userEmail);
+  const lineBreak = document.createElement('br');
+  userInfo.appendChild(logout);
+  userInfo.appendChild(lineBreak);
+  userInfo.appendChild(lineBreak);
+}
+
+// ask the user to login so they can post a comment
+function askLogIn(loginInfo) {
+  const loginSection = document.getElementById('loginSec');
+  const login = document.createElement('a');
+  login.innerHTML = 'Login';
+  login.className = 'loginButton';
+  login.href = loginInfo.url;
+  const lineBreak = document.createElement('br');
+  loginSection.appendChild(lineBreak);
+  loginSection.appendChild(lineBreak);
+  loginSection.appendChild(login);
+}
+
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function responsive() {
+  var x = document.getElementById("mynavbar");
+  if (x.className === "navbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbar";
+  }
 }
 
