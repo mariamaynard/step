@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maria Maynard - Contact</title>
+    <title>Maria Maynard - Comments</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/597067be53.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
   </head>
-  <body onload = "getComment()">
+  <body onload = "load()">
     <div class = "container">
       <div class="header">
           <h1><a href = "index.html">Maria Maynard</a></h1>
@@ -29,19 +29,24 @@
           <h2>Add your comments here!</h2>
           <div class="row">
             <div class = "col">
-              <form onsubmit="postComment(event)" id = "myForm">
-                <h3>Comment</h3>
-                <input type = "text" id = "name" placeholder = "Your Name"><br/><br/>
-                <textarea rows="10" cols="30" id = "comment" placeholder = "Comment"></textarea>
-                <br/><br/>
-                <input id = "submit" type = "submit"/>
-                <br/><br/>
-              </form>
+              <div id ="commSec">
+                <div id = "userInfo"></div>
+                <form onsubmit="postComment(event)" id = "myForm">
+                  <h3>Enter a comment</h3>
+                  <input type = "text" id = "name" placeholder = "Your Name"><br/><br/>
+                  <textarea rows="10" cols="30" id = "comment" placeholder = "Comment"></textarea>
+                  <br/><br/>
+                  <input id = "submit" type = "submit"/>
+                  <br/><br/>
+                </form>
+              </div>
+              <div id = "loginSec">
+                <p>To post a comment, please login to your google account.</p>
+              </div>
             </div>
             <div class = "col">
               <h3>Options</h3>
               <form onsubmit="applyOptions(event)">
-                <h3></h3>
                 <label for="commNum">Number of comments to show:</label>
                 <input type = "number" id = "commNum" min = "1" value = "5">
                 <br/><br/>
@@ -56,12 +61,16 @@
                 <input id = "submit" type = "submit" value = "Apply"/>
                 <br/><br/>
               </form>
-              <label>Click here to delete all the comments:</label><br/><br/>
-              <button id = "submit" onclick="deleteCom()">Delete</button>
+              <!-- <label>Click here to delete all the comments:</label><br/><br/>
+              <button id = "submit" onclick="deleteCom()">Delete</button> -->
               <br/><br/>
             </div>
           </div>
-          <div id = "comments"></div>
+          <div id = "comCont">
+            <h3>Comments</h3>
+            <div id = "comments">
+            </div>
+          </div>
         </div>
         <div class="side">
           <img src = "images/flower.jpg" alt = "image of maria holding a flower">

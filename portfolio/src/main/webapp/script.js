@@ -11,8 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-//updates the comments on the page
 var max;
 var sort;
 
@@ -65,10 +63,11 @@ function deleteCom() {
   });
 }
 
+//makes the comment element with the name of the user, and  their comment
 function createCommentElement(comment) {
   const comElem = document.createElement('div');
   comElem.className = 'comment';
-// give the name a header format
+  // give the name a header format
   const nameElem = document.createElement('h4');
   nameElem.id = 'name';
   nameElem.innerText = comment.name;
@@ -77,5 +76,34 @@ function createCommentElement(comment) {
   comElem.appendChild(nameElem);
   comElem.appendChild(commTextElem);
   return comElem;
+}
+
+function load(){
+  getComment()
+  fetch('/login').then(response => response.json()).then((loginInfo) => {
+    console.log(loginInfo);
+    if(loginInfo.loggedIn === '1'){
+      document.getElementById('commSec').style.display = 'block';
+      document.getElementById('loginSec').style.display = 'none';
+      const userInfo = document.getElementById('userInfo');
+      const userEmail = document.createElement('p');
+      userEmail.innerHTML = "Logged in as " + loginInfo.email;
+      const logout = document.createElement('a');
+      logout.innerHTML = 'Logout';
+      logout.className = 'loginButton';
+      logout.href = loginInfo.url;
+      userInfo.appendChild(userEmail);
+      userInfo.appendChild(logout);
+    } else {
+      document.getElementById('commSec').style.display = 'none';
+      document.getElementById('loginSec').style.display = 'block';
+      const loginSection = document.getElementById('loginSec');
+      const login = document.createElement('a');
+      login.innerHTML = 'Login';
+      login.className = 'loginButton';
+      login.href = loginInfo.url;
+      loginSection.appendChild(login);
+    }
+  });
 }
 
