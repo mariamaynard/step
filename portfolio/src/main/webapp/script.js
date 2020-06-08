@@ -14,12 +14,14 @@
 
 //updates the comments on the page
 var max;
+var sort;
 
-function getComment(fromMax) {
-  if(fromMax === true || max == null) {
-    max = document.getElementById("commNum").value;
+function getComment(fromApply) {
+  if(fromApply === true || max == null) {
+    max = document.getElementById('commNum').value;
+    sort = document.getElementById('sort').value;
   }
-  fetch('/get-comment?commNum=' + max).then(response => response.json()).then((comnts) => {
+  fetch('/get-comment?commNum=' + max + '&sort=' + sort).then(response => response.json()).then((comnts) => {
     const commentList = document.getElementById('comments');
     commentList.innerHTML = '';
     // add all of the comments to the comment container
@@ -32,10 +34,11 @@ function getComment(fromMax) {
 // method that gets the comment that the user wants to post and adds it to the page
 function postComment(e) {
   e.preventDefault();
-  var comment = document.getElementById("comment").value;
-  document.getElementById("myForm").reset();
+  var comment = document.getElementById('comment').value;
+  var name = document.getElementById("name").value;
+  document.getElementById('myForm').reset();
   // make the post request with the comment as a parameter
-  const requestPost = new Request('/get-comment?comment=' + comment, {method: 'POST'});
+  const requestPost = new Request('/get-comment?comment=' + comment + '&name=' + name, {method: 'POST'});
   fetch(requestPost).then(response => response.text()).then(text => {
     if(text != ""){
       getComment();
@@ -44,10 +47,12 @@ function postComment(e) {
 }
 
 // method that updates the max number of comments that show up on the page
-function maxComment(e) {
+function applyOptions(e) {
   e.preventDefault();
   getComment(true);
 }
+
+//method that updates the sort method of the comments
 
 // deletes all the comments from the page
 function deleteCom() {
@@ -60,10 +65,13 @@ function deleteCom() {
   });
 }
 
-/** Creates an <li> element containing text. */
-function createCommentElement(comm) {
-  const comElem = document.createElement('li');
-  comElem.innerText = comm;
+function createCommentElement(comment) {
+  const comElem = document.createElement('dt');
+  comElem.className = 'comment';
+  comElem.innerText = comment.name;
+  const commTextElem = document.createElement('dd');
+  commTextElem.innerText = comment.text;
+  comElem.appendChild(commTextElem);
   return comElem;
 }
 
