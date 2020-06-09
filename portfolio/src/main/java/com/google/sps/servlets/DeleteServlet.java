@@ -19,6 +19,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.util.List;
@@ -28,7 +30,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
 
 @WebServlet("/delete-comment")
 public class DeleteServlet extends HttpServlet {
@@ -42,11 +43,18 @@ public class DeleteServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Task");
-    PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
-      Key key = entity.getKey();
-      datastore.delete(key);
+    Long id = Long.parseLong(request.getParameter("id"));
+    if(id != null){
+      Key commEntityKey = KeyFactory.createKey("Task", id);
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.delete(commEntityKey);
+    } else {
+      Query query = new Query("Task");
+      PreparedQuery results = datastore.prepare(query);
+      for (Entity entity : results.asIterable()) {
+        Key key = entity.getKey();
+        datastore.delete(key);
+      }
     }
   response.setContentType("text/html");
   response.getWriter().println("done");

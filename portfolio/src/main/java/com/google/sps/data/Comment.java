@@ -19,13 +19,19 @@ public final class Comment {
 
   private final String name;
   private final String text;
+  private final String email;
+  private final long timestamp;
+  private final long id;
 
-  public Comment(String name, String comment) {
+  public Comment(String name, String comment, String email, Long timestamp,  long id) {
     if(name == ""){
       this.name = "Anonymous";
     } else {
       this.name = name;
     }
     this.text = comment;
+    this.email = email;
+    this.timestamp = timestamp;
+    this.id = id;
   }
 }
