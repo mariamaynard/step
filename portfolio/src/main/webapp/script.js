@@ -14,6 +14,8 @@
 var max;
 var sort;
 var filter;
+var email;
+var userComment;
 
 function getComment(fromApply) {
   if(fromApply === true || max == null) {
@@ -26,6 +28,10 @@ function getComment(fromApply) {
     commentList.innerHTML = '';
     // add all of the comments to the comment container
     comnts.forEach((comm) => {
+      userComment = false;
+      if(comm.email == email) {
+        userComment = true;
+      }
       commentList.appendChild(createCommentElement(comm));
     })
   });
@@ -78,18 +84,35 @@ function createCommentElement(comment) {
   commTextElem.innerText = comment.text;
   comElem.appendChild(nameElem);
   comElem.appendChild(commTextElem);
+  // make the delete button
+  if(userComment){
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteComment(comment);
+      // Remove the task from the DOM.
+      comElem.remove();
+    });
+    comElem.appendChild(deleteButtonElement);
+  }
   return comElem;
 }
 
+/** Tells the server to delete the task. */
+function deleteComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-comment', {method: 'POST', body: params});
+}
+
 function load(){
-  getComment()
   fetch('/login').then(response => response.json()).then((loginInfo) => {
-    console.log(loginInfo);
+    email = loginInfo.email;
     if(loginInfo.loggedIn === '1'){
       document.getElementById('commSec').style.display = 'block';
       document.getElementById('loginSec').style.display = 'none';
       getUserLoggedIn(loginInfo);
-      if(loginInfo.email == "mariamaynard@google.com") {
+      if(email == "mariamaynard@google.com") {
         document.getElementById('deleteSec').style.display = "block";
       }
     } else {
@@ -98,12 +121,13 @@ function load(){
       askLogIn(loginInfo);
     }
   });
+  getComment();
 }
 
 // get and display the information when a user is logged in
 function getUserLoggedIn(loginInfo) {
   const userInfo = document.getElementById('userInfo');
-  const userEmail = document.createElement('l');
+  const userEmail = document.createElement('label');
   userEmail.for = 'loginButton';
   userEmail.innerHTML = "Logged in as " + loginInfo.email;
   const logout = document.createElement('a');

@@ -21,8 +21,9 @@ public final class Comment {
   private final String text;
   private final String email;
   private final long timestamp;
+  private final long id;
 
-  public Comment(String name, String comment, String email, Long timestamp) {
+  public Comment(String name, String comment, String email, Long timestamp,  long id) {
     if(name == ""){
       this.name = "Anonymous";
     } else {
@@ -31,5 +32,6 @@ public final class Comment {
     this.text = comment;
     this.email = email;
     this.timestamp = timestamp;
+    this.id = id;
   }
 }

@@ -65,7 +65,7 @@ public class DataServlet extends HttpServlet {
     List<Comment> cmntsList = new ArrayList<>();
     // return the correct number of comments
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(max))) {
-      Comment comment = new Comment((String)entity.getProperty("name"), (String)entity.getProperty("comment"), (String)entity.getProperty("email"), (long)entity.getProperty("timestamp"));
+      Comment comment = new Comment((String)entity.getProperty("name"), (String)entity.getProperty("comment"), (String)entity.getProperty("email"), (long)entity.getProperty("timestamp"), entity.getKey().getId());
       cmntsList.add(comment);
     }
     Gson gson = new Gson();

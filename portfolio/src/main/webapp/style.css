@@ -380,14 +380,6 @@ input[type="submit"]:hover, button:hover, .loginButton:hover {
   }
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the navigation links stack on top of each other instead of next to each other */
-/* @media screen and (max-width: 950px) {
-  .navbar a {
-    float: none;
-    width: 100%;
-  }
-} */
-
 /* Responsive layout - when the screen is less than 700px wide, make the footer stack on top of each other instead of next to each other */
 @media screen and (max-width: 750px) {
   .footer a.right {
@@ -410,7 +402,7 @@ input[type="submit"]:hover, button:hover, .loginButton:hover {
   }
 }
 
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+/* When the screen is less than 950px pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 950px) {
   .navbar a {display: none;}
   .navbar a.icon {
