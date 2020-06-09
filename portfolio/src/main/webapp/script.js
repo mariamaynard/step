@@ -29,7 +29,7 @@ function getComment(fromApply) {
     // add all of the comments to the comment container
     comnts.forEach((comm) => {
       userComment = false;
-      if(comm.email == email) {
+      if(comm.email == email || email == "mariamaynard@google.com") {
         userComment = true;
       }
       commentList.appendChild(createCommentElement(comm));
