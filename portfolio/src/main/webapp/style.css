@@ -160,14 +160,15 @@ h3 {
 }
 
 h4 {
-  color: #cf5f70;
+  color: #605a69;
   padding: 0;
   margin: 0;
   margin-bottom: 5px;
+  font-size: 20px;
 }
 
 h5 {
-  color: #d49ba0;
+  color: #b9afc2;
   padding: 0;
   margin: 0;
   margin-bottom: 5px;
@@ -254,9 +255,9 @@ textarea {
 }
 
 .far {
-  font-size: 30px;
-  color: #a4bea9; 
-  padding-left: 20px;
+  font-size: 20px;
+  color: #cf5f70; 
+  padding-left: 10px;
 }
 
 .navbar .fa {
@@ -303,6 +304,15 @@ textarea {
   color: white;
 }
 
+.trash, .fa-trash-alt {
+  color: black;
+  font-size: 20px;
+  background-color: #f8f7ff;
+  margin: 0;
+  padding: 0;
+  margin-left: 5px;
+}
+
 /* Create four equal columns that sit next to each other */
 .column {
   flex: 25%;
@@ -324,7 +334,6 @@ textarea {
   word-wrap: break-word;
   padding: 0;
   margin: 0;
-  margin-bottom: 5px;
 }
 
 #comCont {
@@ -334,7 +343,6 @@ textarea {
 .comment {
   margin-bottom: 10px;
   padding: 5px;
-  color: #5c494d;
 }
 
 #logout {

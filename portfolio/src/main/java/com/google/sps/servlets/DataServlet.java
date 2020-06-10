@@ -74,10 +74,11 @@ public class DataServlet extends HttpServlet {
       String text = (String)entity.getProperty("comment");
       String email = (String)entity.getProperty("email");
       long timestamp = (long)entity.getProperty("timestamp");
+      String date = (String)entity.getProperty("date");
       long id = entity.getKey().getId();
       float score = Float.parseFloat((String)entity.getProperty("score"));
       // String score = "hi";
-      Comment comment = new Comment(name, text, email, timestamp, id, score);
+      Comment comment = new Comment(name, text, email, timestamp, id, score, date);
       cmntsList.add(comment);
     }
     Gson gson = new Gson();
@@ -96,7 +97,6 @@ public class DataServlet extends HttpServlet {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     String date = time.format(formatter);
     String score = "" + getSentiment(text);
-    System.out.println(score);
     if(text != null){
       //store the comment as an entity with the timestamp and the comment
       Entity taskEntity = new Entity("Task");
@@ -104,6 +104,7 @@ public class DataServlet extends HttpServlet {
       taskEntity.setProperty("comment", text);
       taskEntity.setProperty("name", name);
       taskEntity.setProperty("email",email);
+      taskEntity.setProperty("date", date);
       taskEntity.setProperty("score", score);
       //add the comment to the datastore so that we can get it back later
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

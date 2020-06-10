@@ -85,20 +85,31 @@ function createCommentElement(comment) {
   // add in their comment
   const commTextElem = document.createElement('p');
   commTextElem.innerText = comment.text;
+  const emojiLabel = document.createElement('label');
+  emojiLabel.innerText = "Feeling";
+  emojiLabel.for = "emoji";
   const emoji = sentimentEmoji(comment.score);
-  comElem.appendChild(nameElem);
-  nameElem.appendChild(emoji);
-  comElem.appendChild(commTextElem);
+  emoji.id = "emoji";
+  const dateElem = document.createElement('h5');
+  dateElem.innerText = comment.date;
   // make the delete button
   if(userComment){
     const deleteButtonElement = document.createElement('button');
-    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.className = "trash";
+    const deleteIcon = document.createElement('i');
+    deleteIcon.className = "fas fa-trash-alt";
     deleteButtonElement.addEventListener('click', () => {
       deleteComment(comment);
       // Remove the task from the DOM.
       comElem.remove();
     });
-    comElem.appendChild(deleteButtonElement);
+    deleteButtonElement.appendChild(deleteIcon);
+    nameElem.appendChild(deleteButtonElement);
+    comElem.appendChild(nameElem);
+    comElem.appendChild(dateElem);
+    comElem.appendChild(emojiLabel);
+    comElem.appendChild(emoji);
+    comElem.appendChild(commTextElem);
   }
   return comElem;
 }
