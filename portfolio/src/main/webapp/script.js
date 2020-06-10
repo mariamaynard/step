@@ -105,12 +105,12 @@ function createCommentElement(comment) {
     });
     deleteButtonElement.appendChild(deleteIcon);
     nameElem.appendChild(deleteButtonElement);
-    comElem.appendChild(nameElem);
-    comElem.appendChild(dateElem);
-    comElem.appendChild(emojiLabel);
-    comElem.appendChild(emoji);
-    comElem.appendChild(commTextElem);
   }
+  comElem.appendChild(nameElem);
+  comElem.appendChild(dateElem);
+  comElem.appendChild(emojiLabel);
+  comElem.appendChild(emoji);
+  comElem.appendChild(commTextElem);
   return comElem;
 }
 
