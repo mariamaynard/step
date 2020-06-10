@@ -87,8 +87,8 @@ function createCommentElement(comment) {
   commTextElem.innerText = comment.text;
   const emoji = sentimentEmoji(comment.score);
   comElem.appendChild(nameElem);
+  nameElem.appendChild(emoji);
   comElem.appendChild(commTextElem);
-  comElem.appendChild(emoji);
   // make the delete button
   if(userComment){
     const deleteButtonElement = document.createElement('button');

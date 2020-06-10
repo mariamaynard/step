@@ -37,6 +37,8 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /* Comment servlet that stores and posts comments */
 @WebServlet("/get-comment")
@@ -90,6 +92,9 @@ public class DataServlet extends HttpServlet {
     String name = request.getParameter("name");
     String email = userService.getCurrentUser().getEmail();
     long timestamp = System.currentTimeMillis();
+    LocalDateTime time = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    String date = time.format(formatter);
     String score = "" + getSentiment(text);
     System.out.println(score);
     if(text != null){

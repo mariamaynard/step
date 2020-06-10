@@ -160,7 +160,7 @@ h3 {
 }
 
 h4 {
-  color: #856265;
+  color: #cf5f70;
   padding: 0;
   margin: 0;
   margin-bottom: 5px;
@@ -255,6 +255,8 @@ textarea {
 
 .far {
   font-size: 30px;
+  color: #a4bea9; 
+  padding-left: 20px;
 }
 
 .navbar .fa {
@@ -332,6 +334,7 @@ textarea {
 .comment {
   margin-bottom: 10px;
   padding: 5px;
+  color: #5c494d;
 }
 
 #logout {
