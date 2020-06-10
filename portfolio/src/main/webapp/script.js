@@ -28,6 +28,7 @@ function getComment(fromApply) {
     commentList.innerHTML = '';
     // add all of the comments to the comment container
     comnts.forEach((comm) => {
+      console.log(comm.score);
       userComment = false;
       if(comm.email == email || email == "mariamaynard@google.com") {
         userComment = true;
@@ -63,7 +64,9 @@ function applyOptions(e) {
 // deletes all the comments from the page
 function deleteCom() {
   // send the post request to delete
-  const requestPost = new Request('/delete-comment', {method: 'POST'});
+  const params = new URLSearchParams();
+  params.append('id', 0);
+  const requestPost = new Request('/delete-comment', {method: 'POST', body: params});
   fetch(requestPost).then(response => response.text()).then(text => {
     if(text != ""){
       getComment();
@@ -82,8 +85,10 @@ function createCommentElement(comment) {
   // add in their comment
   const commTextElem = document.createElement('p');
   commTextElem.innerText = comment.text;
+  const emoji = sentimentEmoji(comment.score);
   comElem.appendChild(nameElem);
   comElem.appendChild(commTextElem);
+  comElem.appendChild(emoji);
   // make the delete button
   if(userComment){
     const deleteButtonElement = document.createElement('button');
@@ -163,5 +168,31 @@ function responsive() {
   } else {
     x.className = "navbar";
   }
+}
+
+function sentimentEmoji(score){
+  if(score < 0.2 && score > -0.2){
+    var emoji;
+    // score betweeb -0.2 and 0.2
+    emoji = document.createElement('i');
+    emoji.className = "far fa-meh";
+  } else if(score > 0.6) {
+    // score greater than 0.6
+    emoji = document.createElement('i');
+    emoji.className = "far fa-laugh-beam";
+  } else if(score > 0.2) {
+    // score is between 0.2 and 0.6
+    emoji = document.createElement('i');
+    emoji.className = "far fa-smile-beam";
+  } else if(score < -0.6) {
+    // score less that -0.6
+    emoji = document.createElement('i');
+    emoji.className = "far fa-angry";
+  } else {
+    // the score is between -0.6 and -0.2
+    emoji = document.createElement('i');
+    emoji.className = "far fa-frown-open";
+  }
+  return emoji;
 }
 

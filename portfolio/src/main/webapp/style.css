@@ -253,6 +253,10 @@ textarea {
   margin: 5px 2px;
 }
 
+.far {
+  font-size: 30px;
+}
+
 .navbar .fa {
   padding: 5px;
   font-size: auto;

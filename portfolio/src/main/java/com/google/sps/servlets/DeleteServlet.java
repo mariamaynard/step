@@ -44,7 +44,7 @@ public class DeleteServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Long id = Long.parseLong(request.getParameter("id"));
-    if(id != null){
+    if(id != 0) {
       Key commEntityKey = KeyFactory.createKey("Task", id);
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.delete(commEntityKey);

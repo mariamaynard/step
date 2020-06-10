@@ -22,8 +22,9 @@ public final class Comment {
   private final String email;
   private final long timestamp;
   private final long id;
+  private final float score;
 
-  public Comment(String name, String comment, String email, Long timestamp,  long id) {
+  public Comment(String name, String comment, String email, Long timestamp,  long id, float score) {
     if(name == ""){
       this.name = "Anonymous";
     } else {
@@ -33,5 +34,6 @@ public final class Comment {
     this.email = email;
     this.timestamp = timestamp;
     this.id = id;
+    this.score = score;
   }
 }
