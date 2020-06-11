@@ -16,6 +16,8 @@ var sort;
 var filter;
 var email;
 var userComment;
+var admin;
+var own = [];
 
 function getComment(fromApply) {
   if(fromApply === true || max == null) {
@@ -28,10 +30,12 @@ function getComment(fromApply) {
     commentList.innerHTML = '';
     // add all of the comments to the comment container
     comnts.forEach((comm) => {
-      console.log(comm.score);
       userComment = false;
-      if(comm.email == email || email == "mariamaynard@google.com") {
+      if (comm.email == email) {
         userComment = true;
+      }
+      if (email == "mariamaynard@google.com") {
+        admin = true;
       }
       commentList.appendChild(createCommentElement(comm));
     })
@@ -93,7 +97,7 @@ function createCommentElement(comment) {
   const dateElem = document.createElement('h5');
   dateElem.innerText = comment.date;
   // make the delete button
-  if(userComment){
+  if(userComment || admin){
     const deleteButtonElement = document.createElement('button');
     deleteButtonElement.className = "trash";
     const deleteIcon = document.createElement('i');
