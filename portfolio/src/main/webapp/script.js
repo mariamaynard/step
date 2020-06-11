@@ -125,6 +125,7 @@ function deleteComment(comment) {
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 
+// when the pageloads, checks if the person is logged in and loads the comments
 function load(){
   fetch('/login').then(response => response.json()).then((loginInfo) => {
     email = loginInfo.email;
@@ -185,6 +186,7 @@ function responsive() {
   }
 }
 
+// pick the emoji that works with the sentiment score
 function sentimentEmoji(score){
   if(score < 0.2 && score > -0.2){
     var emoji;
@@ -211,3 +213,45 @@ function sentimentEmoji(score){
   return emoji;
 }
 
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 30.267239, lng: -97.743240}, zoom: 10});
+  
+  const wellsBranch = new google.maps.Marker({
+    position: {lat: 30.444568, lng: -97.679799},
+    map: map,
+    title: 'Wells Branch'
+  });
+
+   const utTower = new google.maps.Marker({
+    position: {lat: 30.286080, lng: -97.739346},
+    map: map,
+    title: 'The University of Texas at Austin'
+  });
+
+  const mcneil = new google.maps.Marker({
+    position: {lat: 30.449402, lng: -97.733259},
+    map: map,
+    title: 'McNeil High School'
+  });
+
+  const pedernales = new google.maps.Marker({
+    position: {lat: 30.308199, lng: -98.257773},
+    map: map,
+    title: 'Pedernales Falls'
+  });
+
+  const mckinney = new google.maps.Marker({
+    position: {lat: 30.1836, lng: -97.7222},
+    map: map,
+    title: 'McKinney Falls'
+  });
+
+  const rowingDock = new google.maps.Marker({
+    position: {lat: 30.274764, lng: -97.774275},
+    map: map,
+    title: 'The Rowing Dock'
+  });
+}
