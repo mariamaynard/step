@@ -1,0 +1,25 @@
+indexes:
+
+- kind: Task
+  properties:
+  - name: email
+  - name: timestamp
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: email
+  - name: timestamp
+    direction: asc
+
+- kind: Task
+  properties:
+  - name: email
+  - name: name
+    direction: asc
+
+- kind: Task
+  properties:
+  - name: email
+  - name: name
+    direction: desc

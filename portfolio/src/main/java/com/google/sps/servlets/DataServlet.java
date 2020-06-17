@@ -34,8 +34,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/* Comment servlet that stores and posts comments */
 @WebServlet("/get-comment")
 public class DataServlet extends HttpServlet {
 
@@ -65,7 +70,15 @@ public class DataServlet extends HttpServlet {
     List<Comment> cmntsList = new ArrayList<>();
     // return the correct number of comments
     for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(max))) {
-      Comment comment = new Comment((String)entity.getProperty("name"), (String)entity.getProperty("comment"), (String)entity.getProperty("email"), (long)entity.getProperty("timestamp"), entity.getKey().getId());
+      String name = (String)entity.getProperty("name");
+      String text = (String)entity.getProperty("comment");
+      String email = (String)entity.getProperty("email");
+      long timestamp = (long)entity.getProperty("timestamp");
+      String date = (String)entity.getProperty("date");
+      long id = entity.getKey().getId();
+      float score = Float.parseFloat((String)entity.getProperty("score"));
+      // String score = "hi";
+      Comment comment = new Comment(name, text, email, timestamp, id, score, date);
       cmntsList.add(comment);
     }
     Gson gson = new Gson();
@@ -80,6 +93,10 @@ public class DataServlet extends HttpServlet {
     String name = request.getParameter("name");
     String email = userService.getCurrentUser().getEmail();
     long timestamp = System.currentTimeMillis();
+    LocalDateTime time = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    String date = time.format(formatter);
+    String score = "" + getSentiment(text);
     if(text != null){
       //store the comment as an entity with the timestamp and the comment
       Entity taskEntity = new Entity("Task");
@@ -87,6 +104,8 @@ public class DataServlet extends HttpServlet {
       taskEntity.setProperty("comment", text);
       taskEntity.setProperty("name", name);
       taskEntity.setProperty("email",email);
+      taskEntity.setProperty("date", date);
+      taskEntity.setProperty("score", score);
       //add the comment to the datastore so that we can get it back later
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(taskEntity);
@@ -112,5 +131,15 @@ public class DataServlet extends HttpServlet {
       query.setFilter(propertyFilter);
     }
     return query;
+  }
+
+  private float getSentiment(String comment) throws IOException {
+    Document doc =
+        Document.newBuilder().setContent(comment).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    float score = sentiment.getScore();
+    languageService.close();
+    return score;
   }
 }
