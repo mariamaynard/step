@@ -365,6 +365,13 @@ input[type="submit"]:hover, button:hover, .loginButton:hover {
   background-color: #8ea7c2;
 }
 
+#map {
+  border: thin solid black;
+  height: 500px;
+  width: 90%;
+  margin: auto;
+}
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column {

@@ -77,7 +77,6 @@ public class DataServlet extends HttpServlet {
       String date = (String)entity.getProperty("date");
       long id = entity.getKey().getId();
       float score = Float.parseFloat((String)entity.getProperty("score"));
-      // String score = "hi";
       Comment comment = new Comment(name, text, email, timestamp, id, score, date);
       cmntsList.add(comment);
     }

@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon"  href="images/favicon.ico" />
     <title>Maria Maynard - About</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/597067be53.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/597067be53.js" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgVGk5mCdxk9A8p1yCzizxuReifSisF0"></script>
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="createMap();">
     <div class ="container">
       <div class="header">
         <h1><a href = "index.html">Maria Maynard</a></h1>
@@ -62,6 +64,8 @@
             </ul>
             <p>Music and creativity have always been a big part of who I am. I stated dancing when I was three, and I haven't stopped. Even now being busy with school and work, I still find time to express myself even if it
                 means taking a five minute break to dance around my room. I love crafts so every weekend I take time to paint. I also love nature, so I love to go outside and have fun doing things like hiking, camping, or kayaking.</p>
+            <h2>My Hometown</h2>
+            <div id="map"></div>          
           </div>    
         </div>
       </div>
