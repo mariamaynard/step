@@ -33,22 +33,11 @@ public final class FindMeetingQuery {
     return freeTimes;
   }
 
-  // method that looks if there is an attendee in the event that is also part of the attendees
-  // that we want at the meeting
-  public boolean areAttendeesInEvent(Event event, Collection attendees){
-    Set<String> eventAttendees = event.getAttendees();
-    List<String> result = eventAttendees.stream()
-      .distinct()
-      .filter(attendees::contains)
-      .collect(toList());
-    return result.isEmpty();
-  }
-
   // method that returns a list of times that the attendees are busy
   public List<TimeRange> busyAttendee(Collection<Event> events, Collection<String> attendees) {
     List<TimeRange> busyTimes = events
         .stream()
-        .filter(event -> !areAttendeesInEvent(event, attendees))
+        .filter(event -> !Collections.disjoint(event.getAttendees(), attendees))
         .map(event -> event.getWhen())
         .sorted(TimeRange.ORDER_BY_START)
         .collect(toList());
