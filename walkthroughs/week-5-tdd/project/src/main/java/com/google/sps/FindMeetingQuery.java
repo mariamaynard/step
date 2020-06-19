@@ -82,10 +82,7 @@ public final class FindMeetingQuery {
         mandIndex++;
       }
     }
-    if (request.getAttendees().isEmpty()) {
-      return optional;
-    }
-    return (intersect.isEmpty() ? mandatory : intersect);
+    return intersect.isEmpty() ? mandatory : intersect;
   }
 
   // method that goes through the busy times to see when there is an open spot to have a meeting
